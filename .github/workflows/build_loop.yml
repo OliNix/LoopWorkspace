@@ -48,8 +48,8 @@ jobs:
           #  These next two patches must be combined together, do not apply one without the other
           #  This applies CustomTypeOne LoopPatches to released submodules Loop and LoopKit
           #  See: https://www.loopandlearn.org/custom-type-one-loop-patches
-          curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt | git apply --directory=Loop
-          curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt | git apply --directory=LoopKit
+          # curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopPatch.txt | git apply --directory=Loop
+          # curl https://raw.githubusercontent.com/CustomTypeOne/LoopPatches/main/LoopkitPatch.txt | git apply --directory=LoopKit
 
           #  END: lnl_patches now applied to the released code
 
