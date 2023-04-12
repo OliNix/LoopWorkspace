@@ -28,6 +28,12 @@ jobs:
         uses: actions/checkout@v3
         with:
           submodules: recursive
+          
+      # Customize Loop: Download and apply patches
+      - name: Customize Loop 
+      run: | 
+
+        # The patches start here 
 
       # Patch Fastlane Match to not print tables
       - name: Patch Match Tables
