@@ -43,7 +43,7 @@ jobs:
           git clone https://github.com/johandegraeve/xdrip-client-swift-1.git xdrip-client-swift
           git clone https://github.com/creepymonster/GlucoseDirectClient.git GlucoseDirectClient
           # This patch configures LoopWorkspace to use the added CGM submodules
-          curl https://github.com/loopnlearn/LoopWorkspace/commit/4092277a21fa44a1258b693a5fbcce4d8d9dbd17.patch | git apply
+          curl https://github.com/loopnlearn/LoopWorkspace/commit/4092277a21fa44a1258b693a5fbcce4d8d9dbd17.patch | git apply --directory=Submodule
 
           #  This LoopWorkspace commit: Merge pull request to add LoopnLearn logo (from MikePlante1)
           #  This encompasses many smaller commits
