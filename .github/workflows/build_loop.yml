@@ -284,7 +284,8 @@ jobs:
           https://raw.githubusercontent.com/loopandlearn/lnl-scripts/main/CustomizationSelect.sh)" \
           future_carbs_4h \
           high_carb_limit \
-          2002 \
+          profiles \
+          watch_title \
           live_activity
 
           # the final customization listed above CANNOT have a continuation character
