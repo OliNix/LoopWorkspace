@@ -10,7 +10,7 @@ on:
   #   affect other OS apps if run simultaneously.
   # Each OS needs a time of day distinct from other apps, LoopWorkspace uses 9 every Wed and 7 every 1st of month
   schedule:
-    - cron: "0 9 * * 3" # Checks for updates at 09:00 UTC every Wednesday
+  #  - cron: "0 9 * * 3" # Checks for updates at 09:00 UTC every Wednesday
     - cron: "0 7 1 * *" # Builds the app on the 1st of every month at 07:00 UTC
 
 env:
@@ -260,12 +260,31 @@ jobs:
       # Customize Loop: Download and apply patches
       - name: Customize Loop
         run: |
+          
+          # CustomizationSelect script
+          # The "\" is a continuation character 
+          #   the line following a "\" should not be blank
+          /bin/bash -c "$(curl -fsSL \
+          https://raw.githubusercontent.com/loopandlearn/lnl-scripts/main/CustomizationSelect.sh)" \
+          future_carbs_4h \
+          high_carb_limit \
+          profiles \
+          watch_title \
+          live_activity
 
-          # LoopWorkspace patches
-          # -applies any patches located in the LoopWorkspace/patches/ directory
-          if $(ls ./patches/* &> /dev/null); then
-          git apply ./patches/* --allow-empty -v --whitespace=fix
-          fi
+          # the final customization listed above CANNOT have a continuation character
+          # more customizations can be pasted after this line
+          # Add in CGM Clients (xDrip4iOS)
+          echo "Downloading code to support xdrip-client-swift"
+          git clone https://github.com/johandegraeve/xdrip-client-swift-1.git xdrip-client-swift
+          echo "checking out the xdrip-client-swift commit that works with Loop 3.4.0 or later"
+          cd xdrip-client-swift; git checkout e618d67 --quiet; cd ..
+          echo "Downloading code to support GlucoseDirectClient"
+          git clone --branch=dev https://github.com/creepymonster/GlucoseDirectClient.git GlucoseDirectClient
+          echo "checking out the GlucoseDirectClient commit that works with Loop 3.4.0 or later"
+          cd GlucoseDirectClient; git checkout c4223d7 --quiet; cd ..
+          echo "Applying customization to add CGM support to Loop for xDrip4iOS and GlucoseDirect"
+          curl https://github.com/loopandlearn/LoopWorkspace/commit/c97f303d15982a9b192bb90ae7ac3e89a3daf203.patch | git apply
 
           # Submodule Loop patches:
           # Template for customizing submodule Loop (changes Loop app name to "CustomLoop")
