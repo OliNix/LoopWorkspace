@@ -195,8 +195,7 @@ jobs:
           future_carbs_4h \
           high_carb_limit \
           profiles \
-          watch_title \
-          live_activity
+          watch_title
           # the final customization listed above CANNOT have a continuation character
           # more customizations can be pasted after this line
           # Add in CGM Clients (xDrip4iOS)
